@@ -64,7 +64,7 @@ namespace AmirohCryptoMirror
                     
                 }
 
-
+                //
                 SetImages();
                 SetPriceColor();
 
