@@ -12,7 +12,7 @@
                Placeholder="Amount owned of Coin" 
                PlaceholderColor="White" 
                HorizontalOptions="CenterAndExpand"
-               BackgroundColor="Transparent"
+               BackgroundColor="Black"
                TextColor="White"
                Keyboard="Numeric" 
                Completed="Amount_Completed"

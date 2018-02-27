@@ -5,7 +5,7 @@
              x:Class="AmirohCryptoMirror.PortfolioPage"
              BackgroundColor="Black">
     <ContentPage.Content>
-        <AbsoluteLayout HeightRequest="100" HorizontalOptions="FillAndExpand" BackgroundColor="Transparent">
+        <AbsoluteLayout HorizontalOptions="FillAndExpand" BackgroundColor="Transparent">
 
             <ffimageloading:CachedImage x:Name="imgAnimation" Source="portfolio2.gif"
                Aspect="AspectFit" 
@@ -30,11 +30,15 @@
             </Label>
 
 
-            <StackLayout BackgroundColor="Black" AbsoluteLayout.LayoutBounds="0.2, 0.5"
+            <StackLayout BackgroundColor="Black" AbsoluteLayout.LayoutBounds="0, 0.5"
             AbsoluteLayout.LayoutFlags="PositionProportional" >
                 <Label Text="Portfolio" TextColor="White" FontSize="Medium"></Label>   
                 
-                <ListView x:Name="listviewPortfolio" HorizontalOptions="StartAndExpand" HasUnevenRows="True" BackgroundColor="Black" >
+                <ListView x:Name="listviewPortfolio"
+                          HorizontalOptions="StartAndExpand"
+                          HasUnevenRows="True" 
+                          BackgroundColor="Black" 
+                          >
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>

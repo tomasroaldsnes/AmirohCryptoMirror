@@ -13,7 +13,7 @@ namespace AmirohCryptoMirror
 		{
 			InitializeComponent();
 
-			MainPage = new AmirohCryptoMirror.MainPage();
+			MainPage = new NavigationPage(new AmirohCryptoMirror.MainPage());
 		}
 
 		protected override void OnStart ()

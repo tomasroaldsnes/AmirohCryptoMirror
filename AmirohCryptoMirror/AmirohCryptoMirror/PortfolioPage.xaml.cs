@@ -26,39 +26,54 @@ namespace AmirohCryptoMirror
         public PortfolioPage()
         {
             InitializeComponent();
-            _connection = DependencyService.Get<ISQLiteDB>().GetConnection();
 
-            listviewPortfolio.ItemsSource = coinCollection;
+            _connection = DependencyService.Get<ISQLiteDB>().GetConnection();
+            
+
 
         }
 
         protected async override void OnAppearing()
         {
-            var pList = await _connection.Table<Portfolio>().ToListAsync();
-            string url_cmc = "https://api.coinmarketcap.com/v1/ticker/?limit=10";
 
-            HttpClient _client = new HttpClient(new NativeMessageHandler());
-
-            var content_coins = await _client.GetStringAsync(url_cmc);
-            var coinList = JsonConvert.DeserializeObject<List<Coin>>(content_coins);
-
-            coinCollection = new ObservableCollection<Coin>();
-
-            int index = 0;
-            foreach (var coin in coinList)
+            try
             {
-                if(coin.Name == pList[index].CoinName)
+                await _connection.CreateTableAsync<Portfolio>();
+                var pList = await _connection.Table<Portfolio>().ToListAsync();
+
+                string url_cmc = "https://api.coinmarketcap.com/v1/ticker";
+
+                HttpClient _client = new HttpClient(new NativeMessageHandler());
+
+                var content_coins = await _client.GetStringAsync(url_cmc);
+                var coinList = JsonConvert.DeserializeObject<List<Coin>>(content_coins);
+
+                coinCollection = new ObservableCollection<Coin>();
+
+                
+                if (pList.Count > 0)
                 {
-                    coinCollection.Add(coin);
+                    foreach (var coin in coinList)
+                    {
+                        foreach (var portfolioCoin in pList)
+                        {
+                            if (coin.Name == portfolioCoin.CoinName)
+                                coinCollection.Add(coin);
+                        }
+                    }
+                    
                 }
-                index++;
+
+
+                SetImages();
+                SetPriceColor();
+
+                listviewPortfolio.ItemsSource = coinCollection;
             }
-
-           
-
-            SetPriceColor();
-
-            listviewPortfolio.ItemsSource = coinCollection;
+            catch(Exception e)
+            {
+                //
+            }
 
         }
 
@@ -66,15 +81,32 @@ namespace AmirohCryptoMirror
         {
             try
             {
-                await Navigation.PushModalAsync(new AddCoinPage());
+                await Navigation.PushAsync(new AddCoinPage());
+                //var portfolio_coin_instance = new Portfolio { CoinName = "Bitcoin", Amount = "10" };
+                //await _connection.InsertAsync(portfolio_coin_instance);
+
             }
             catch (Exception)
             {
                 //
             }
         }
-
-            public void SetPriceColor()
+        public void SetImages()
+        {
+            foreach (var coin in coinCollection)
+            {
+                try
+                {
+                    string image = coin.Symbol.ToLower() + ".png";
+                    coin.Image = image;
+                }
+                catch
+                {
+                    //
+                }
+            }
+        }
+        public void SetPriceColor()
         {
             foreach (var coin in coinCollection)
             {

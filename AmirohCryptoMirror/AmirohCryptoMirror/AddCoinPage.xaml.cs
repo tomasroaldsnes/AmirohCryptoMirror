@@ -64,9 +64,9 @@ namespace AmirohCryptoMirror
 
                     var obj = e.Item as Coin;
 
-                    await Navigation.PushModalAsync(new AmountPage(obj));
+                    await Navigation.PushAsync(new AmountPage(obj));
                 }
-               
+
             }
             catch (Exception ex)
             {

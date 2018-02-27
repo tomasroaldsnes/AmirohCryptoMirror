@@ -26,15 +26,15 @@ namespace AmirohCryptoMirror
             _coin = c;
         }
 
-       
+
         private async void Amount_Completed(object sender, EventArgs e)
         {
             try
             {
-                await _connection.CreateTableAsync<Portfolio>();
+                
                 var portfolio_coin_instance = new Portfolio { CoinName = _coin.Name, Amount = entryAmount.Text };
                 await _connection.InsertAsync(portfolio_coin_instance);
-                await Navigation.PopModalAsync();
+                await Navigation.PushAsync(new MainPage());
             }
             catch (Exception)
             {

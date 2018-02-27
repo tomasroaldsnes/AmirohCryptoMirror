@@ -6,7 +6,7 @@ using System.IO;
 using System.Text;
 using Xamarin.Forms;
 
-[assembly: Dependency(typeof(ISQLiteDB))]
+[assembly: Dependency(typeof(SQLiteDB))]
 namespace AmirohCryptoMirror.Persistence
 {
     
