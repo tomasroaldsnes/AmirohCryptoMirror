@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             x:Class="AmirohCryptoMirror.StartPage"
+             BackgroundColor="Black">
+    
+    <AbsoluteLayout HorizontalOptions="Fill" BackgroundColor="Transparent">
+        
+        <ffimageloading:CachedImage x:Name="imgAnimation" Source="portfolio1.gif"
+               HorizontalOptions="StartAndExpand"
+               Aspect="AspectFit"                     
+               RetryCount="10"
+               RetryDelay="500"
+               HeightRequest="100"
+               WidthRequest="100"                     
+               AbsoluteLayout.LayoutBounds="0,1"
+               AbsoluteLayout.LayoutFlags="PositionProportional">
+        </ffimageloading:CachedImage>
+
+        <StackLayout AbsoluteLayout.LayoutBounds="1,0,100,100"
+            AbsoluteLayout.LayoutFlags="PositionProportional">
+            <Label Text=" 05 : 30 " TextColor="White"></Label>
+            <Label Text="Thursday" TextColor="White"></Label>
+            <Label Text="January 25th" TextColor="White"></Label>
+
+        </StackLayout>
+
+        <StackLayout AbsoluteLayout.LayoutBounds="0,0"
+            AbsoluteLayout.LayoutFlags="PositionProportional" HorizontalOptions="StartAndExpand">
+            <StackLayout Orientation="Horizontal" HorizontalOptions="StartAndExpand">
+
+                <Label Text="30" TextColor="White" ></Label>
+                
+                <ffimageloading:CachedImage 
+                    Source="sun.png"
+                    HeightRequest="100"
+                    WidthRequest="100"
+                    Aspect="AspectFill" 
+                    HorizontalOptions="StartAndExpand">
+                </ffimageloading:CachedImage>
+                
+            </StackLayout>
+
+            <Label Text="15%" TextColor="White"></Label>
+
+        </StackLayout>
+
+
+    </AbsoluteLayout>
+</ContentPage>

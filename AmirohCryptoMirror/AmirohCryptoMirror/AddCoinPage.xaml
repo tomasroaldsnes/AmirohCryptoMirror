@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             x:Class="AmirohCryptoMirror.AddCoinPage"
+             BackgroundColor="Black">
+    
+    <StackLayout BackgroundColor="Black">
+        <Label Text="Add Coin to Portfolio" TextColor="White" FontSize="Medium"></Label>
+
+        <ListView x:Name="coinListview" ItemTapped="Coin_ItemTapped" HorizontalOptions="StartAndExpand" HasUnevenRows="True" BackgroundColor="Black" >
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout Orientation="Horizontal">
+                            <ffimageloading:CachedImage HeightRequest="30" WidthRequest="30" Source="{Binding Image}"></ffimageloading:CachedImage>
+                            <Label Text="{Binding Name}" TextColor="White"></Label>
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+
+        </ListView>
+    </StackLayout>
+</ContentPage>
